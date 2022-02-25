@@ -118,8 +118,8 @@ public class Cherrybot {
                 if (registerOperatorForm.isPresent()) {
 
                     Map<String, Object> payload = new HashMap<>();
-                    payload.put("http://xmlns.com/foaf/0.1/Name", "Bruno Souza de Lima");
-                    payload.put("http://xmlns.com/foaf/0.1/Mbox", "bruno.szdl@gmail.com");
+                    payload.put("name", "Bruno Souza de Lima");
+                    payload.put("email", "bruno.szdl@gmail.com");
 
                     Optional<DataSchema> inputSchema = registerOperatorAction.get().getInputSchema();
 
@@ -196,22 +196,22 @@ public class Cherrybot {
             if (setTargetForm.isPresent()) {
 
                 Map<String, Object> coordinate = new HashMap<>();
-                coordinate.put("https://interactions.ics.unisg.ch/cherrybot#XCoordinate", x);
-                coordinate.put("https://interactions.ics.unisg.ch/cherrybot#YCoordinate", y);
-                coordinate.put("https://interactions.ics.unisg.ch/cherrybot#ZCoordinate", z);
+                coordinate.put("x", x);
+                coordinate.put("y", y);
+                coordinate.put("z", z);
 
                 Map<String, Object> rotation = new HashMap<>();
-                rotation.put("https://interactions.ics.unisg.ch/cherrybot#Roll", roll);
-                rotation.put("https://interactions.ics.unisg.ch/cherrybot#Pitch", pitch);
-                rotation.put("https://interactions.ics.unisg.ch/cherrybot#Yaw", yaw);
+                rotation.put("roll", roll);
+                rotation.put("pitch", pitch);
+                rotation.put("yaw", yaw);
 
                 Map<String, Object> target = new HashMap<>();
-                target.put("https://interactions.ics.unisg.ch/cherrybot#CoordinatesSchema", coordinate);
-                target.put("https://interactions.ics.unisg.ch/cherrybot#RotationSchema", rotation);
+                target.put("coordinate", coordinate);
+                target.put("rotation", rotation);
 
                 Map<String, Object> payload = new HashMap<>();
-                payload.put("https://interactions.ics.unisg.ch/cherrybot#TcpTargetSchema", target);
-                payload.put("http://www.w3.org/2001/XMLSchema#int", speed);
+                payload.put("target", target);
+                payload.put("speed", speed);
 
                 System.out.println(payload);
 
@@ -392,15 +392,15 @@ public class Cherrybot {
         //final String token = initialize();
 
         //if you have already initialized the cherry bot, uncomment the line below and define the operator's token
-        final String token = "f107008e4d444297ba91a84d760a4192";
+        final String token = "24dc132168e442f8a6e6a87636cf4544";
 
         setTarget(token, 400, 0, 400, 180, 0, 0, SPEED);
-        //setTarget(token, 0, 400, 400, 180, 0, 0, SPEED);
-        //setTarget(token, 400, 0, 400, 180, 0, 90, SPEED);
+        setTarget(token, 0, 400, 400, 180, 0, 0, SPEED);
+        setTarget(token, 400, 0, 400, 180, 0, 90, SPEED);
 
-        //waitForMovement(token);
+        waitForMovement(token);
 
-        //setGripper(token, 20);
+        setGripper(token, 20);
 
     }
 
